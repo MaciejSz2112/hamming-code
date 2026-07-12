@@ -25,7 +25,7 @@ jobs:
         pip install pytest
     
     - name: Set up CMake
-      uses: jwlawrence/actions-setup-cmake@v1.0.1
+      uses: threeal/cmake-action@v1.3.0
 
     - name: Run autonomous pytest workflow
       run: |
