@@ -35,5 +35,6 @@ jobs:
           mingw-w64-x86_64-cmake
 
     - name: Run autonomous pytest workflow
+      shell: msys2 {0}
       run: |
         pytest -v -s
