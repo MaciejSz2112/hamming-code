@@ -4,12 +4,14 @@
 
 
 
-VOID
+INT8
 main (
   VOID
   )
 {
   MatrixGenerator ();
+
+  return 0;
 }
 
 
