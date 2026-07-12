@@ -28,5 +28,6 @@ jobs:
       uses: threeal/cmake-action@v1.3.0
 
     - name: Run autonomous pytest workflow
+      shell: msys2 {0}
       run: |
         pytest -v -s
