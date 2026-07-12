@@ -5,12 +5,14 @@
 
 
 
-VOID
+INT8
 main (
   VOID
   )
 {
   CoderModule ();
+
+  return 0;
 }
 
 

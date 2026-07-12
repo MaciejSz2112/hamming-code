@@ -12,6 +12,13 @@ Makefile
 cmake_install.cmake
 
 # =========================================================================
+# Python Temporary Files
+# =========================================================================
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# =========================================================================
 # Compiled Binaries and Objects
 # =========================================================================
 # Windows executables and object files
@@ -49,5 +56,6 @@ cmake_install.cmake
 # Application Data and Generated Test Files
 # =========================================================================
 # Ignore dynamic runtime output files generated during execution
+files/input.txt
 files/channel.txt
 files/output.txt
