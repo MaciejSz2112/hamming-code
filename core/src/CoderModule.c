@@ -1,7 +1,7 @@
 
-#include "Library/DefinesLib.h"
-#include "Library/CoderModuleLib.h"
-#include "Library/Size_15.h"
+#include "DefinesLib.h"
+#include "CoderModuleLib.h"
+#include "Size_15.h"
 
 
 
@@ -23,7 +23,7 @@ CoderModule (
 
   PRINT_INFO ("Function starts.\n");
 
-  OPEN_FILE_STREAM (ChannelFilePtr, "Files/channel.txt", "w+b");
+  OPEN_FILE_STREAM (ChannelFilePtr, "files/channel.txt", "w+b");
 
   Coding (ChannelFilePtr);
 
@@ -31,7 +31,7 @@ CoderModule (
 
   Decoding (ChannelFilePtr);
 
-  CLOSE_FILE_STREAM (ChannelFilePtr, "Files/channel.txt")
+  CLOSE_FILE_STREAM (ChannelFilePtr, "files/channel.txt")
 
   PRINT_INFO ("Function ends.\n");
 }
@@ -48,7 +48,7 @@ Coding (
 
   PRINT_INFO ("Function starts.\n");
 
-  OPEN_FILE_STREAM (InputFilePtr, "Files/input.txt", "rb");
+  OPEN_FILE_STREAM (InputFilePtr, "files/input.txt", "rb");
 
   ClearCharBuffor (InputBlock, k);
   
@@ -61,7 +61,7 @@ Coding (
     ClearCharBuffor (InputBlock, k);
   }
 
-  CLOSE_FILE_STREAM (InputFilePtr, "Files/input.txt");
+  CLOSE_FILE_STREAM (InputFilePtr, "files/input.txt");
 
   PRINT_INFO ("Function ends.\n");
 }
@@ -78,7 +78,7 @@ Decoding (
 
   PRINT_INFO ("Function starts.\n");
 
-  OPEN_FILE_STREAM (OutputFilePtr, "Files/output.txt", "wb");
+  OPEN_FILE_STREAM (OutputFilePtr, "files/output.txt", "wb");
 
   ClearCharBuffor (InputBlock, n);
   
@@ -93,7 +93,7 @@ Decoding (
     ClearCharBuffor (InputBlock, n);
   }
 
-  CLOSE_FILE_STREAM (OutputFilePtr, "Files/output.txt");
+  CLOSE_FILE_STREAM (OutputFilePtr, "files/output.txt");
 
   PRINT_INFO ("Function ends.\n");
 }
