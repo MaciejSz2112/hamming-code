@@ -1,6 +1,6 @@
 
-#include "Library/DefinesLib.h"
-#include "Library/MatrixGeneratorLib.h"
+#include "DefinesLib.h"
+#include "MatrixGeneratorLib.h"
 
 
 
@@ -28,7 +28,7 @@ MatrixGenerator (
 
   CountSizeOfMatrix ((INT16*)&n, &k, &d);
 
-  sprintf (FileName, "Library/Size_%d.h", n);
+  sprintf (FileName, "core/include/Size_%d.h", n);
 
   OPEN_FILE_STREAM (HeaderFilePtr, FileName, "w");
 

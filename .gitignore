@@ -1,1 +1,53 @@
+# =========================================================================
+# Build and Output Directories
+# =========================================================================
+# CMake build artifacts and temporary compilation directories
+build/
+.CMake/
+CMakeCache.txt
+CMakeFiles/
+CMakeSettings.json
+CTestTestfile.cmake
+Makefile
+cmake_install.cmake
+
+# =========================================================================
+# Compiled Binaries and Objects
+# =========================================================================
+# Windows executables and object files
+*.exe
+*.obj
+*.pdb
+*.ilk
+
+# Linux/macOS executables and object files
+*.o
+*.out
+*.a
+*.lib
+*.so
+*.dylib
+
+# =========================================================================
+# Development Tools and IDEs
+# =========================================================================
+# Visual Studio Code local settings
 .vscode/
+!.vscode/extensions.json
+
+# Visual Studio temporary files
+.vs/
+*.user
+*.suo
+
+# Local text editor swap and backup files
+*~
+*.swp
+*.bak
+
+# =========================================================================
+# Application Data and Generated Test Files
+# =========================================================================
+# Ignore dynamic runtime output files generated during execution
+files/channel.txt
+files/output.txt
