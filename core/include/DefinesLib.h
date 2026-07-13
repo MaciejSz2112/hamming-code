@@ -7,6 +7,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define PRINT_INFO(f_, ...)       (printf ("[INFO]  %s: " f_, __func__, ##__VA_ARGS__))
 #define PRINT_ERROR(f_, ...)      (printf ("[ERROR] %s: " f_, __func__, ##__VA_ARGS__))
@@ -26,5 +29,9 @@
                                                       }                                                   \
                                                       PRINT_INFO ("%s closed succesfully.\n", FileName);  \
                                                     } while (0);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
