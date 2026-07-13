@@ -5,9 +5,9 @@
 
 
 
-INT8
+int8_t
 main (
-  VOID
+  void
   )
 {
   CoderModule ();
@@ -16,9 +16,9 @@ main (
 }
 
 
-VOID
+void
 CoderModule (
-  VOID
+  void
   )
 {
   FILE    *ChannelFilePtr;
@@ -39,14 +39,14 @@ CoderModule (
 }
 
 
-VOID
+void
 Coding (
-  FILE    *ChannelFilePtr
+  FILE      *ChannelFilePtr
   )
 {
-  FILE    *InputFilePtr;
-  CHAR    InputBlock[k+1];
-  UINT8   OutputBlock[n];
+  FILE      *InputFilePtr;
+  char      InputBlock[k+1];
+  uint8_t   OutputBlock[n];
 
   PRINT_INFO ("Function starts.\n");
 
@@ -69,14 +69,14 @@ Coding (
 }
 
 
-VOID
+void
 Decoding (
-  FILE    *ChannelFilePtr
+  FILE      *ChannelFilePtr
   )
 {
-  FILE    *OutputFilePtr;
-  CHAR    InputBlock[n+1];
-  UINT8   OutputBlock[k];
+  FILE      *OutputFilePtr;
+  char      InputBlock[n+1];
+  uint8_t   OutputBlock[k];
 
   PRINT_INFO ("Function starts.\n");
 
@@ -101,38 +101,38 @@ Decoding (
 }
 
 
-BOOLEAN
+bool
 GetBlockFromFile (
-  FILE      *FilePtr,
-  CHAR      Buffor[],
-  UINT16    BufforSize
+  FILE        *FilePtr,
+  char        Buffor[],
+  uint16_t    BufforSize
   )
 {
-  UINT8     Counter;
+  uint8_t     Counter;
 
   if (fgets (Buffor, BufforSize, FilePtr) == NULL) {
-    return FALSE;
+    return false;
   }
 
   for (Counter = 0; Counter < (BufforSize - 1); Counter++) {
     if (Buffor[Counter] == '\0') {
       fseek (FilePtr, 0 - Counter, SEEK_CUR);
-      return FALSE;
+      return false;
     }
   }
 
-  return TRUE;
+  return true;
 }
 
 
-VOID
+void
 ErrorCorrection (
-  UINT8     Buffor[]
+  uint8_t     Buffor[]
   )
 {
-  UINT16    Counter;
-  UINT8     ErrorVector[d];
-  UINT8     ErrorPosition;
+  uint16_t    Counter;
+  uint8_t     ErrorVector[d];
+  uint8_t     ErrorPosition;
 
   XorMatrixAndDataToBuffor (d, n, Buffor, H, ErrorVector);
 
@@ -147,15 +147,15 @@ ErrorCorrection (
 }
 
 
-VOID
+void
 PrintIntBufforToFile (
-  FILE      *FilePtr,
-  UINT8     InputBuffor[],
-  UINT16    BufforSize
+  FILE        *FilePtr,
+  uint8_t     InputBuffor[],
+  uint16_t    BufforSize
   )
 {
-  UINT16    Counter;
-  CHAR      OutputBuffor[BufforSize+1];
+  uint16_t    Counter;
+  char        OutputBuffor[BufforSize+1];
 
   for (Counter = 0; Counter < BufforSize; Counter++) {
     OutputBuffor[Counter] = INT_TO_CHAR (InputBuffor[Counter]);
@@ -166,13 +166,13 @@ PrintIntBufforToFile (
 }
 
 
-VOID
+void
 ClearCharBuffor (
-  CHAR      Buffor[],
-  UINT16    BufforSize
+  char        Buffor[],
+  uint16_t    BufforSize
   )
 {
-  UINT16    Counter;
+  uint16_t    Counter;
 
   for (Counter = 0; Counter < BufforSize; Counter++) {
     Buffor[Counter] = '\0';
@@ -180,17 +180,17 @@ ClearCharBuffor (
 }
 
 
-VOID
+void
 XorMatrixAndDataToBuffor (
-  UINT16        SizeOfDimensionN,
-  UINT16        SizeOfDimensionM,
-  CHAR          InputBuffor[],
-  const UINT8   Matrix[][SizeOfDimensionM],
-  UINT8         OutputBuffor[]
+  uint16_t        SizeOfDimensionN,
+  uint16_t        SizeOfDimensionM,
+  char            InputBuffor[],
+  const uint8_t   Matrix[][SizeOfDimensionM],
+  uint8_t         OutputBuffor[]
   )
 {
-  UINT16        CounterN;
-  UINT16        CounterM;
+  uint16_t        CounterN;
+  uint16_t        CounterM;
 
   for (CounterN = 0; CounterN < SizeOfDimensionN; CounterN++) {
     OutputBuffor[CounterN] = 0;

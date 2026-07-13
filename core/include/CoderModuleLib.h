@@ -12,9 +12,9 @@
 /**
 	Main function
  **/
-VOID
+void
 CoderModule (
-  VOID
+  void
   );
 
 
@@ -23,7 +23,7 @@ CoderModule (
 
   @param  FilePtr   Pointer to file simulating channel
 **/
-VOID 
+void 
 Coding (
   FILE              *FilePtr
   );
@@ -34,7 +34,7 @@ Coding (
 
   @param  FilePtr   Pointer to file simulating channel
  **/
-VOID
+void
 Decoding (
   FILE              *FilePtr
   );
@@ -42,20 +42,20 @@ Decoding (
 
 /**
 	Gets block of data from file. If there is no data
-  or block is incomplete, returnes FALSE
+  or block is incomplete, returnes false
 	
 	@param	FilePtr       Pointer to a file
 	@param	Buffor        Pointer to a buffor array
 	@param	BufforSize    Size of the buffor
 	
-	@retval	TRUE          - if function gets full block
-  @retval FALSE         - if geting full block was impossible
+	@retval	true          - if function gets full block
+  @retval false         - if geting full block was impossible
  **/
-BOOLEAN
+bool
 GetBlockFromFile (
   FILE                  *FilePtr,
-  CHAR                  Buffor[],
-  UINT16                BufforSize
+  char                  Buffor[],
+  uint16_t              BufforSize
   );
 
 
@@ -64,9 +64,9 @@ GetBlockFromFile (
 	
 	@param	Buffor    Pointer to a buffor array
  **/
-VOID
+void
 ErrorCorrection (
-  UINT8             Buffor[]
+  uint8_t           Buffor[]
   );
 
 
@@ -77,29 +77,29 @@ ErrorCorrection (
   @param  InputBuffor   Pointer to a buffor array
   @param  BufforSize    Size of the buffor
  **/
-VOID
+void
 PrintIntBufforToFile (
   FILE                  *FilePtr,
-  UINT8                 InputBuffor[],
-  UINT16                BufforSize
+  uint8_t               InputBuffor[],
+  uint16_t              BufforSize
   );
 
 
 /**
-  Fils UCHAR buffor with '\0'
+  Fils char buffor with '\0'
 
   @param  Buffor        Pointer to a buffor array
   @param  BufforSize    Size of the buffor
  **/
-VOID
+void
 ClearCharBuffor (
-  CHAR                  Buffor[],
-  UINT16                BufforSize
+  char                  Buffor[],
+  uint16_t              BufforSize
   );
 
 
 /**
-	OutputBuffor XOR (Matrix AND (UINT8)InputBuffor)
+	OutputBuffor XOR (Matrix AND (uint8_t)InputBuffor)
 	
 	@param	SizeOfDimensionN    Size of N dimension of the matrix and OutputBuffor
 	@param	SizeOfDimensionM    Size of M dimension of the matrix and InputBuffor
@@ -107,13 +107,13 @@ ClearCharBuffor (
 	@param	Matrix              Pointer to the matrix
 	@param	OutputBuffor        Pointer to OutputBuffor
  **/
-VOID
+void
 XorMatrixAndDataToBuffor (
-  UINT16                      SizeOfDimensionN,
-  UINT16                      SizeOfDimensionM,
-  CHAR                        InputBuffor[],
-  const UINT8                 Matrix[][SizeOfDimensionM],
-  UINT8                       OutputBuffor[]
+  uint16_t                    SizeOfDimensionN,
+  uint16_t                    SizeOfDimensionM,
+  char                        InputBuffor[],
+  const uint8_t               Matrix[][SizeOfDimensionM],
+  uint8_t                     OutputBuffor[]
   );
 
 
