@@ -4,9 +4,9 @@
 
 
 
-INT8
+int8_t
 main (
-  VOID
+  void
   )
 {
   MatrixGenerator ();
@@ -15,20 +15,20 @@ main (
 }
 
 
-VOID
+void
 MatrixGenerator (
-  VOID
+  void
   )
 {
-  FILE      *HeaderFilePtr;
-  UINT16    n;
-  UINT16    k;
-  UINT8     d;
-  CHAR      FileName[30];
+  FILE        *HeaderFilePtr;
+  uint16_t    n;
+  uint16_t    k;
+  uint8_t     d;
+  char        FileName[30];
 
   PRINT_INFO ("Function starts.\n");
 
-  CountSizeOfMatrix ((INT16*)&n, &k, &d);
+  CountSizeOfMatrix ((int16_t*)&n, &k, &d);
 
   sprintf (FileName, "core/include/Size_%d.h", n);
 
@@ -50,11 +50,11 @@ MatrixGenerator (
 }
 
 
-VOID
+void
 CountSizeOfMatrix (
-  INT16     *n,
-  UINT16    *k,
-  UINT8     *d
+  int16_t     *n,
+  uint16_t    *k,
+  uint8_t     *d
   )
 {
   PRINT_INFO ("Function starts.\n");
@@ -78,12 +78,12 @@ CountSizeOfMatrix (
 }
 
 
-VOID
+void
 PrintFileHead (
-  FILE      *FilePtr,
-  UINT16    n,
-  UINT16    k,
-  UINT8     d
+  FILE        *FilePtr,
+  uint16_t    n,
+  uint16_t    k,
+  uint8_t     d
   )
 {
   PRINT_INFO ("Function starts.\n");
@@ -108,18 +108,18 @@ PrintFileHead (
 }
 
 
-VOID
+void
 PrintGeneratorMatrix (
-  FILE      *FilePtr,
-  UINT16    RowNumber,
-  UINT16    ColumnNumber
+  FILE        *FilePtr,
+  uint16_t    RowNumber,
+  uint16_t    ColumnNumber
   )
 {
-  UINT16    Row;
-  UINT16    Column;
-  UINT8     ParityRow;
-  UINT16    NextParityBit;
-  UINT8     Value;
+  uint16_t    Row;
+  uint16_t    Column;
+  uint8_t     ParityRow;
+  uint16_t    NextParityBit;
+  uint8_t     Value;
 
   PRINT_INFO ("Function starts.\n");
 
@@ -175,16 +175,16 @@ PrintGeneratorMatrix (
 }
 
 
-VOID
+void
 PrintCheckMatrix (
-  FILE      *FilePtr,
-  UINT16    ColumnNumber,
-  UINT8     RowNumber
+  FILE        *FilePtr,
+  uint16_t    ColumnNumber,
+  uint8_t     RowNumber
   )
 {
-  UINT16    Column;
-  UINT8     Row;
-  UINT8     Value;
+  uint16_t    Column;
+  uint8_t     Row;
+  uint8_t     Value;
 
   PRINT_INFO ("Function starts.\n");
 
@@ -219,17 +219,17 @@ PrintCheckMatrix (
 }
 
 
-VOID
+void
 PrintEncodingMatrix (
-  FILE      *FilePtr,
-  UINT16    ColumnNumber,
-  UINT16    RowNumber
+  FILE        *FilePtr,
+  uint16_t    ColumnNumber,
+  uint16_t    RowNumber
   )
 {
-  UINT16    Row;
-  UINT16    Column;
-  UINT16    ValuePosition;
-  UINT16    NextParityBit;
+  uint16_t    Row;
+  uint16_t    Column;
+  uint16_t    ValuePosition;
+  uint16_t    NextParityBit;
 
   PRINT_INFO ("Function starts.\n");
 
@@ -269,17 +269,17 @@ PrintEncodingMatrix (
 }
 
 
-VOID
+void
 PrintColumnNumbering (
-  FILE      *FilePtr,
-  UINT16    ColumnAmount
+  FILE        *FilePtr,
+  uint16_t    ColumnAmount
   )
 {
-  UINT16    ColumnNumber;
-  UINT8     Space;
-  UINT16    Cap;
+  uint16_t    ColumnNumber;
+  uint8_t     Space;
+  uint16_t    Cap;
 
-  PrintBlankSpaceBeforeString (FilePtr, 15, "//1");
+  PrintBlankSpaceBeforeString (FilePtr, 17, "//1");
 
   for (ColumnNumber = 5, Space = 11, Cap = 10; ColumnNumber <= ColumnAmount; ColumnNumber+=5) {
     if (ColumnNumber == 10) {
@@ -298,14 +298,14 @@ PrintColumnNumbering (
 }
 
 
-VOID
+void
 PrintBlankSpaceBeforeString (
-  FILE    *FilePtr,
-  UINT8   Length,
-  CHAR    String[10]
+  FILE      *FilePtr,
+  uint8_t   Length,
+  char      String[10]
   )
 {
-  UINT8   Counter;
+  uint8_t   Counter;
 
   for (Counter = 0; Counter < Length; Counter++) {
     fprintf (FilePtr, " ");
@@ -315,14 +315,14 @@ PrintBlankSpaceBeforeString (
 }
 
 
-VOID
+void
 PrintBlankSpaceBeforeInt (
-  FILE      *FilePtr,
-  UINT8     Length,
-  UINT16    IntValue
+  FILE        *FilePtr,
+  uint8_t     Length,
+  uint16_t    IntValue
   )
 {
-  CHAR      String[10];
+  char      String[10];
 
   sprintf (String, "%d", IntValue);
 

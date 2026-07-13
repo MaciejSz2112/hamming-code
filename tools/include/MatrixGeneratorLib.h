@@ -4,19 +4,19 @@
 
 #include "DefinesLib.h"
 
-#define OPEN_ROW(FilePtr)                   (PrintBlankSpaceBeforeString (FilePtr, 16, "{"))
+#define OPEN_ROW(FilePtr)                   (PrintBlankSpaceBeforeString (FilePtr, 18, "{"))
 #define CLOSE_ROW(FilePtr, Row, MaxRow)     (fprintf (FilePtr, Row == MaxRow ? "}\n" : "},\n"))
-#define OPEN_MATRIX(FilePtr, MatrixDef)     (fprintf (FilePtr, "const UINT8   %s = {\n", MatrixDef))
-#define CLOSE_MATRIX(FilePtr)               (PrintBlankSpaceBeforeString (FilePtr, 14, "};\n\n"))
+#define OPEN_MATRIX(FilePtr, MatrixDef)     (fprintf (FilePtr, "const uint8_t   %s = {\n", MatrixDef))
+#define CLOSE_MATRIX(FilePtr)               (PrintBlankSpaceBeforeString (FilePtr, 16, "};\n\n"))
 
 
 
 /**
 	Main function
  **/
-VOID
+void
 MatrixGenerator (
-  VOID
+  void
   );
 
 
@@ -27,11 +27,11 @@ MatrixGenerator (
 	@param	k   Number of information bits in block
 	@param	d   Number of parity bits in block
  **/
-VOID
+void
 CountSizeOfMatrix (
-  INT16       *n,
-  UINT16      *k,
-  UINT8       *d
+  int16_t     *n,
+  uint16_t    *k,
+  uint8_t     *d
   );
 
 
@@ -43,12 +43,12 @@ CountSizeOfMatrix (
 	@param	k         Number of information bits in block
 	@param	d         Number of parity bits in block
  **/
-VOID
+void
 PrintFileHead (
   FILE              *HeaderFilePtr,
-  UINT16            n,
-  UINT16            k,
-  UINT8             d
+  uint16_t          n,
+  uint16_t          k,
+  uint8_t           d
   );
 
 
@@ -59,11 +59,11 @@ PrintFileHead (
 	@param	n         Size of data block
 	@param	k         Number of information bits in block
  **/
-VOID
+void
 PrintGeneratorMatrix (
   FILE              *FilePtr,
-  UINT16            n,
-  UINT16            k
+  uint16_t          n,
+  uint16_t          k
   );
 
 
@@ -74,11 +74,11 @@ PrintGeneratorMatrix (
 	@param	n         Size of data block
 	@param	d         Number of parity bits in block
  **/
-VOID
+void
 PrintCheckMatrix (
   FILE              *FilePtr,
-  UINT16            n,
-  UINT8             d
+  uint16_t          n,
+  uint8_t           d
   );
 
 
@@ -89,11 +89,11 @@ PrintCheckMatrix (
 	@param	n         Size of data block
 	@param	k         Number of information bits in block
  **/
-VOID
+void
 PrintEncodingMatrix (
   FILE              *FilePtr,
-  UINT16            n,
-  UINT16            k
+  uint16_t          n,
+  uint16_t          k
   );
 
 
@@ -103,10 +103,10 @@ PrintEncodingMatrix (
 	@param	FilePtr         Pointer to file
 	@param	ColumnAmount    Column amount in matrix
  **/
-VOID
+void
 PrintColumnNumbering (
   FILE                    *FilePtr,
-  UINT16                  ColumnAmount
+  uint16_t                ColumnAmount
   );
 
 
@@ -117,11 +117,11 @@ PrintColumnNumbering (
 	@param	Length    Length of blank space
 	@param	String    Text after blank space
  **/
-VOID
+void
 PrintBlankSpaceBeforeString (
   FILE              *FilePtr,
-  UINT8             Length,
-  CHAR              String[]
+  uint8_t           Length,
+  char              String[]
   );
 
 
@@ -132,11 +132,11 @@ PrintBlankSpaceBeforeString (
 	@param	Length      Length of blank space
 	@param	IntValue    Number after blank space
  **/
-VOID
+void
 PrintBlankSpaceBeforeInt (
   FILE                *FilePtr,
-  UINT8               Length,
-  UINT16              IntValue
+  uint8_t             Length,
+  uint16_t            IntValue
   );
 
 
