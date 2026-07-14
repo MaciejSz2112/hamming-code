@@ -3,8 +3,8 @@ import subprocess
 import pytest
 
 BUILD_DIR = "build"
-MATRIX_GEN_EXE = os.path.join(BUILD_DIR, "matrix_generator.exe")
-CODER_EXE = os.path.join(BUILD_DIR, "coder_module.exe")
+MATRIX_GEN_EXE = os.path.join(BUILD_DIR, "bin/matrix_generator.exe")
+CODER_EXE = os.path.join(BUILD_DIR, "bin/coder_module.exe")
 
 @pytest.fixture(scope="session", autouse=True)
 def compile_project():

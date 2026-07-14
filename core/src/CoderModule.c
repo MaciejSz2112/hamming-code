@@ -6,7 +6,7 @@
 
 
 
-int8_t
+int
 main (
   void
   )
@@ -143,7 +143,7 @@ GetBlockFromFile (
 
 void
 ErrorCorrection (
-  uint8_t     Buffor[]
+  char     Buffor[]
   )
 {
   uint16_t    Counter;

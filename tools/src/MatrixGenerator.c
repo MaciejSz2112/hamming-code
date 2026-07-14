@@ -5,7 +5,7 @@
 
 
 
-int8_t
+int
 main (
   void
   )
@@ -63,13 +63,17 @@ CountSizeOfMatrix (
   uint8_t     *d
   )
 {
+  int   TempInput;
+
   PRINT_INFO ("Function starts.\n");
 
   printf ("\n"
           "        Size of block (>2): "
     );
-  scanf ("%d", n); 
+  scanf ("%d", &TempInput); 
   printf ("\n");
+
+  *n = TempInput;
 
   if (*n < 3) {
     PRINT_ERROR ("Block is too small. It has to be bigger than 2.\n");
@@ -306,9 +310,9 @@ PrintColumnNumbering (
 
 void
 PrintBlankSpaceBeforeString (
-  FILE      *FilePtr,
-  uint8_t   Length,
-  char      String[10]
+  FILE          *FilePtr,
+  uint8_t       Length,
+  const char    *StringPtr
   )
 {
   uint8_t   Counter;
@@ -317,7 +321,7 @@ PrintBlankSpaceBeforeString (
     fprintf (FilePtr, " ");
   }
 
-  fprintf (FilePtr, String);
+  fprintf (FilePtr, StringPtr);
 }
 
 
