@@ -115,13 +115,13 @@ PrintColumnNumbering (
 	
 	@param	FilePtr   Pointer to file
 	@param	Length    Length of blank space
-	@param	String    Text after blank space
+	@param	String    Pointer to text after blank space
  **/
 void
 PrintBlankSpaceBeforeString (
   FILE              *FilePtr,
   uint8_t           Length,
-  char              String[]
+  const char        *StringPtr
   );
 
 
