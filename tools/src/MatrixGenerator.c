@@ -1,5 +1,6 @@
 
 #include <CommonTypes.h>
+#include <FileIo.h>
 #include <MatrixGeneratorLib.h>
 
 
@@ -32,7 +33,10 @@ MatrixGenerator (
 
   sprintf (FileName, "core/include/Size_%d.h", n);
 
-  OPEN_FILE_STREAM (HeaderFilePtr, FileName, "w");
+  if (OpenFileStream (&HeaderFilePtr, FileName, "w") != STATUS_SUCCESS) {
+    PRINT_ERROR ("Matrix generation aborted due to file open failure.\n");
+    exit (EXIT_FAILURE);
+  }
 
   PrintFileHead (HeaderFilePtr, n, k, d);
   
@@ -44,7 +48,9 @@ MatrixGenerator (
   
   fprintf (HeaderFilePtr, "#endif\n");
 
-  CLOSE_FILE_STREAM (HeaderFilePtr, FileName);
+  if (CloseFileStream (HeaderFilePtr, FileName) != STATUS_SUCCESS) {
+    PRINT_ERROR ("Warning: Failed to flush file safely to disk.\n");
+  }
 
   PRINT_INFO ("Function ends.\n");
 }

@@ -1,5 +1,6 @@
 
 #include <CommonTypes.h>
+#include <FileIo.h>
 #include <CoderModuleLib.h>
 #include <Size_15.h>
 
@@ -25,7 +26,10 @@ CoderModule (
 
   PRINT_INFO ("Function starts.\n");
 
-  OPEN_FILE_STREAM (ChannelFilePtr, "files/channel.txt", "w+b");
+  if (OpenFileStream (&ChannelFilePtr, "files/channel.txt", "w+b") != STATUS_SUCCESS) {
+    PRINT_ERROR ("Coder module aborted due to channel file open failure.\n");
+    return;
+  }
 
   Coding (ChannelFilePtr);
 
@@ -33,7 +37,9 @@ CoderModule (
 
   Decoding (ChannelFilePtr);
 
-  CLOSE_FILE_STREAM (ChannelFilePtr, "files/channel.txt")
+  if (CloseFileStream (ChannelFilePtr, "files/channel.txt") != STATUS_SUCCESS) {
+    PRINT_ERROR ("Warning: Failed to close channel file safely.\n");
+  }
 
   PRINT_INFO ("Function ends.\n");
 }
@@ -50,7 +56,10 @@ Coding (
 
   PRINT_INFO ("Function starts.\n");
 
-  OPEN_FILE_STREAM (InputFilePtr, "files/input.txt", "rb");
+  if (OpenFileStream (&InputFilePtr, "files/input.txt", "rb") != STATUS_SUCCESS) {
+    PRINT_ERROR ("Coding aborted due to input file open failure.\n");
+    return;
+  }
 
   ClearCharBuffor (InputBlock, k);
   
@@ -63,7 +72,9 @@ Coding (
     ClearCharBuffor (InputBlock, k);
   }
 
-  CLOSE_FILE_STREAM (InputFilePtr, "files/input.txt");
+  if (CloseFileStream (InputFilePtr, "files/input.txt") != STATUS_SUCCESS) {
+    PRINT_ERROR ("Warning: Failed to close input file safely.\n");
+  }
 
   PRINT_INFO ("Function ends.\n");
 }
@@ -80,7 +91,10 @@ Decoding (
 
   PRINT_INFO ("Function starts.\n");
 
-  OPEN_FILE_STREAM (OutputFilePtr, "files/output.txt", "wb");
+  if (OpenFileStream (&OutputFilePtr, "files/output.txt", "wb") != STATUS_SUCCESS) {
+    PRINT_ERROR ("Decoding aborted due to output file open failure.\n");
+    return;
+  }
 
   ClearCharBuffor (InputBlock, n);
   
@@ -95,7 +109,9 @@ Decoding (
     ClearCharBuffor (InputBlock, n);
   }
 
-  CLOSE_FILE_STREAM (OutputFilePtr, "files/output.txt");
+  if (CloseFileStream (OutputFilePtr, "files/output.txt") != STATUS_SUCCESS) {
+    PRINT_ERROR ("Warning: Failed to close output file safely.\n");
+  }
 
   PRINT_INFO ("Function ends.\n");
 }
