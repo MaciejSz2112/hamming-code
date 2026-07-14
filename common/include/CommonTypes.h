@@ -1,6 +1,6 @@
 
-#ifndef DEFINES_LIB_H
-#define DEFINES_LIB_H
+#ifndef COMMON_TYPES_H
+#define COMMON_TYPES_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -45,4 +45,4 @@ typedef enum {
 }
 #endif
 
-#endif
+#endif    // COMMON_TYPES_H

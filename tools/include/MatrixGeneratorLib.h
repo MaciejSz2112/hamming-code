@@ -2,7 +2,7 @@
 #ifndef MATRIX_GENERATOR_LIB_H
 #define MATRIX_GENERATOR_LIB_H
 
-#include "DefinesLib.h"
+#include <CommonTypes.h>
 
 #define OPEN_ROW(FilePtr)                   (PrintBlankSpaceBeforeString (FilePtr, 18, "{"))
 #define CLOSE_ROW(FilePtr, Row, MaxRow)     (fprintf (FilePtr, Row == MaxRow ? "}\n" : "},\n"))

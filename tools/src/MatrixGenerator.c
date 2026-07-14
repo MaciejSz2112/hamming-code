@@ -1,6 +1,6 @@
 
-#include "DefinesLib.h"
-#include "MatrixGeneratorLib.h"
+#include <CommonTypes.h>
+#include <MatrixGeneratorLib.h>
 
 
 
@@ -93,7 +93,7 @@ PrintFileHead (
                     "#define SIZE_H\n"
                     "\n"
                     "\n"
-                    "#include \"DefinesLib.h\"\n"
+                    "#include <CommonTypes.h>\n"
                     "\n"
     );
 
