@@ -3,7 +3,8 @@
 
 
 
-Status OpenFileStream (
+STATUS
+OpenFileStream (
   FILE          **FilePtr,
   const char    *FileName,
   const char    *Mode
@@ -25,7 +26,8 @@ Status OpenFileStream (
 }
 
 
-Status CloseFileStream (
+STATUS
+CloseFileStream (
   FILE          *FilePtr,
   const char    *FileName
   )

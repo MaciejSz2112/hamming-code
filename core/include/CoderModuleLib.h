@@ -15,9 +15,12 @@
 
 
 /**
-	Main function
- **/
-void
+  Main function
+
+  @retval   STATUS_SUCCESS    - if execution completed successfully
+  @retval   STATUS_ERROR_     - in case of failure
+**/
+STATUS
 CoderModule (
   void
   );
@@ -26,99 +29,105 @@ CoderModule (
 /**
   Coding function
 
-  @param  FilePtr   Pointer to file simulating channel
+  @param[in]  FilePtr   Pointer to file simulating channel
+
+  @retval   STATUS_SUCCESS    - if encoding and saving succeed
+  @retval   STATUS_ERROR_     - in case of failure
 **/
-void 
+STATUS 
 Coding (
-  FILE              *FilePtr
+  FILE    *FilePtr
   );
 
 
 /**
   Decoding function
 
-  @param  FilePtr   Pointer to file simulating channel
- **/
-void
+  @param[in]  FilePtr   Pointer to file simulating channel
+
+  @retval   STATUS_SUCCESS    - if decoding and saving succeed
+  @retval   STATUS_ERROR_     - in case of failure
+**/
+STATUS
 Decoding (
-  FILE              *FilePtr
+  FILE    *FilePtr
   );
 
 
 /**
-	Gets block of data from file. If there is no data
+  Gets block of data from file. If there is no data
   or block is incomplete, returnes false
-	
-	@param	FilePtr       Pointer to a file
-	@param	Buffor        Pointer to a buffor array
-	@param	BufforSize    Size of the buffor
-	
-	@retval	true          - if function gets full block
-  @retval false         - if geting full block was impossible
- **/
+  
+  @param[in]  FilePtr       Pointer to a file
+  @param[out] Buffor        Pointer to a buffor array
+  @param[in]  BufforSize    Size of the buffor
+  
+  @retval   true    - if function gets full block
+  @retval   false   - if geting full block was impossible
+**/
 bool
 GetBlockFromFile (
-  FILE                  *FilePtr,
-  char                  Buffor[],
-  uint16_t              BufforSize
+  FILE        *FilePtr,
+  char        Buffor[],
+  uint16_t    BufforSize
   );
 
 
 /**
-	Checks parity bits and corrects error if it occurs
-	
-	@param	Buffor    Pointer to a buffor array
- **/
+  Checks parity bits and corrects error if it occurs
+  
+  @param[in, out] Buffor    Pointer to a buffor array
+**/
 void
 ErrorCorrection (
-  char              Buffor[]
+  char    Buffor[]
   );
 
 
 /**
   Prints to file data from int buffor
 
-  @param  FilePtr       Pointer to a file
-  @param  InputBuffor   Pointer to a buffor array
-  @param  BufforSize    Size of the buffor
- **/
+  @param[in]  FilePtr       Pointer to a file
+  @param[in]  InputBuffor   Pointer to a buffor array
+  @param[in]  BufforSize    Size of the buffor
+**/
 void
 PrintIntBufforToFile (
-  FILE                  *FilePtr,
-  uint8_t               InputBuffor[],
-  uint16_t              BufforSize
+  FILE        *FilePtr,
+  uint8_t     InputBuffor[],
+  uint16_t    BufforSize
   );
 
 
 /**
   Fils char buffor with '\0'
 
-  @param  Buffor        Pointer to a buffor array
-  @param  BufforSize    Size of the buffor
- **/
+  @param[out] Buffor        Pointer to a buffor array
+  @param[in]  BufforSize    Size of the buffor
+**/
 void
 ClearCharBuffor (
-  char                  Buffor[],
-  uint16_t              BufforSize
+  char        Buffor[],
+  uint16_t    BufforSize
   );
 
 
 /**
-	OutputBuffor XOR (Matrix AND (uint8_t)InputBuffor)
-	
-	@param	SizeOfDimensionN    Size of N dimension of the matrix and OutputBuffor
-	@param	SizeOfDimensionM    Size of M dimension of the matrix and InputBuffor
-	@param	InputBuffor         Pointer to data InputBuffor
-	@param	Matrix              Pointer to the matrix
-	@param	OutputBuffor        Pointer to OutputBuffor
- **/
+  Output Buffor XOR (Matrix AND (uint8_t)InputBuffor)
+  
+  @param[in]  SizeOfDimensionN    Size of N dimension of the matrix and OutputBuffor
+  @param[in]  SizeOfDimensionM    Size of M dimension of the matrix and InputBuffor
+  @param[in]  InputBuffor         Pointer to data InputBuffor
+  @param[in]  Matrix              Pointer to the matrix
+  @param[out] OutputBuffor        Pointer to OutputBuffor
+**/
 void
 XorMatrixAndDataToBuffor (
-  uint16_t                    SizeOfDimensionN,
-  uint16_t                    SizeOfDimensionM,
-  char                        InputBuffor[],
-  const uint8_t               Matrix[][SizeOfDimensionM],
-  uint8_t                     OutputBuffor[]
+  uint16_t        SizeOfDimensionN,
+  uint16_t        SizeOfDimensionM,
+  char            InputBuffor[],
+  const uint8_t   Matrix[][SizeOfDimensionM],
+  uint8_t         OutputBuffor[]
   );
 
 
