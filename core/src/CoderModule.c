@@ -11,41 +11,66 @@ main (
   void
   )
 {
-  CoderModule ();
+  STATUS    Status;
+
+  Status = CoderModule ();
+
+  if (Status != STATUS_SUCCESS) {
+    PRINT_ERROR ("Coder module execution failed with status (%d)\n", Status);
+    return 1;
+  }
+
+  PRINT_INFO("Coder module execution completed successfully\n");
 
   return 0;
 }
 
 
-void
+STATUS
 CoderModule (
   void
   )
 {
-  FILE    *ChannelFilePtr;
+  FILE      *ChannelFilePtr;
+  STATUS    Status;
 
   PRINT_INFO ("Function starts.\n");
 
-  if (OpenFileStream (&ChannelFilePtr, "files/channel.txt", "w+b") != STATUS_SUCCESS) {
+  Status = OpenFileStream (&ChannelFilePtr, "files/channel.txt", "w+b");
+  if (Status != STATUS_SUCCESS) {
     PRINT_ERROR ("Coder module aborted due to channel file open failure.\n");
-    return;
+    return Status;
   }
 
-  Coding (ChannelFilePtr);
+  Status = Coding (ChannelFilePtr);
+  if (Status != STATUS_SUCCESS) {
+    PRINT_ERROR ("Coding process failed.\n");
+    CloseFileStream (ChannelFilePtr, "files/channel.txt");
+    return Status;
+  }
 
   fseek (ChannelFilePtr, 0, SEEK_SET);
 
-  Decoding (ChannelFilePtr);
+  Status = Decoding (ChannelFilePtr);
+  if (Status != STATUS_SUCCESS) {
+    PRINT_ERROR ("Decoding process failed.\n");
+    CloseFileStream (ChannelFilePtr, "files/channel.txt");
+    return Status;
+  }
 
-  if (CloseFileStream (ChannelFilePtr, "files/channel.txt") != STATUS_SUCCESS) {
+  Status = CloseFileStream (ChannelFilePtr, "files/channel.txt");
+  if (Status != STATUS_SUCCESS) {
     PRINT_ERROR ("Warning: Failed to close channel file safely.\n");
+    return Status;
   }
 
   PRINT_INFO ("Function ends.\n");
+
+  return STATUS_SUCCESS;
 }
 
 
-void
+STATUS
 Coding (
   FILE      *ChannelFilePtr
   )
@@ -53,12 +78,14 @@ Coding (
   FILE      *InputFilePtr;
   char      InputBlock[k+1];
   uint8_t   OutputBlock[n];
+  STATUS    Status;
 
   PRINT_INFO ("Function starts.\n");
 
-  if (OpenFileStream (&InputFilePtr, "files/input.txt", "rb") != STATUS_SUCCESS) {
+  Status = OpenFileStream (&InputFilePtr, "files/input.txt", "rb");
+  if (Status != STATUS_SUCCESS) {
     PRINT_ERROR ("Coding aborted due to input file open failure.\n");
-    return;
+    return Status;
   }
 
   ClearCharBuffor (InputBlock, k);
@@ -72,15 +99,19 @@ Coding (
     ClearCharBuffor (InputBlock, k);
   }
 
-  if (CloseFileStream (InputFilePtr, "files/input.txt") != STATUS_SUCCESS) {
+  Status = CloseFileStream (InputFilePtr, "files/input.txt");
+  if (Status != STATUS_SUCCESS) {
     PRINT_ERROR ("Warning: Failed to close input file safely.\n");
+    return Status;
   }
 
   PRINT_INFO ("Function ends.\n");
+
+  return STATUS_SUCCESS;
 }
 
 
-void
+STATUS
 Decoding (
   FILE      *ChannelFilePtr
   )
@@ -88,12 +119,14 @@ Decoding (
   FILE      *OutputFilePtr;
   char      InputBlock[n+1];
   uint8_t   OutputBlock[k];
+  STATUS    Status;
 
   PRINT_INFO ("Function starts.\n");
 
-  if (OpenFileStream (&OutputFilePtr, "files/output.txt", "wb") != STATUS_SUCCESS) {
+  Status = OpenFileStream (&OutputFilePtr, "files/output.txt", "wb");
+  if (Status != STATUS_SUCCESS) {
     PRINT_ERROR ("Decoding aborted due to output file open failure.\n");
-    return;
+    return Status;
   }
 
   ClearCharBuffor (InputBlock, n);
@@ -109,11 +142,15 @@ Decoding (
     ClearCharBuffor (InputBlock, n);
   }
 
-  if (CloseFileStream (OutputFilePtr, "files/output.txt") != STATUS_SUCCESS) {
+  Status = CloseFileStream (OutputFilePtr, "files/output.txt");
+  if (Status != STATUS_SUCCESS) {
     PRINT_ERROR ("Warning: Failed to close output file safely.\n");
+    return Status;
   }
 
   PRINT_INFO ("Function ends.\n");
+
+  return STATUS_SUCCESS;
 }
 
 

@@ -14,15 +14,17 @@ extern "C" {
 
 
 /**
-  @brief Opens a file stream
+  Opens a file stream
 
-  @param[out]   FilePtr     Pointer to the FILE pointer to be populated.
-  @param[in]    FileName    Path to the file.
-  @param[in]    Mode        Access mode.
+  @param[out] FilePtr     Pointer to the FILE pointer to be populated.
+  @param[in]  FileName    Path to the file.
+  @param[in]  Mode        Access mode.
 
-  @return   STATUS_SUCCESS, or appropriate error code.
+  @retval   STATUS_SUCCESS    - if managed to open file stream
+  @retval   STATUS_ERROR_     - in case of failure
 **/
-Status OpenFileStream (
+STATUS
+OpenFileStream (
   FILE          **FilePtr,
   const char    *FileName,
   const char    *Mode
@@ -30,14 +32,16 @@ Status OpenFileStream (
 
 
 /**
-  @brief Closes an open file stream
+  Closes an open file stream
 
-  @param[in]    FilePtr     Pointer to the open FILE stream.
-  @param[in]    FileName    Path to the file.
+  @param[in]  FilePtr     Pointer to the open FILE stream.
+  @param[in]  FileName    Path to the file.
 
-  @return   STATUS_SUCCESS, or appropriate error code.
+  @retval   STATUS_SUCCESS    - if managed to close file stream
+  @retval   STATUS_ERROR_     - in case of failure
 **/
-Status CloseFileStream (
+STATUS
+CloseFileStream (
   FILE          *FilePtr,
   const char    *FileName
   );

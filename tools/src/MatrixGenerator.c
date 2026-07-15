@@ -10,13 +10,21 @@ main (
   void
   )
 {
-  MatrixGenerator ();
+  STATUS    Status;
+
+  Status = MatrixGenerator ();
+  if (Status != STATUS_SUCCESS) {
+    PRINT_ERROR ("Matrix Generator execution failed with status (%d)\n", Status);
+    return 1;
+  }
+
+  PRINT_INFO ("Matrix generator completed successfully.\n");
 
   return 0;
 }
 
 
-void
+STATUS
 MatrixGenerator (
   void
   )
@@ -26,16 +34,22 @@ MatrixGenerator (
   uint16_t    k;
   uint8_t     d;
   char        FileName[30];
+  STATUS      Status;
 
   PRINT_INFO ("Function starts.\n");
 
-  CountSizeOfMatrix ((int16_t*)&n, &k, &d);
+  Status = CountSizeOfMatrix ((int16_t*)&n, &k, &d);
+  if (Status != STATUS_SUCCESS) {
+    PRINT_ERROR ("Matrix generation oborted due to invalid matrix size.\n");
+    return Status;
+  }
 
   sprintf (FileName, "core/include/Size_%d.h", n);
 
-  if (OpenFileStream (&HeaderFilePtr, FileName, "w") != STATUS_SUCCESS) {
+  Status = OpenFileStream (&HeaderFilePtr, FileName, "w");
+  if (Status != STATUS_SUCCESS) {
     PRINT_ERROR ("Matrix generation aborted due to file open failure.\n");
-    exit (EXIT_FAILURE);
+    return Status;
   }
 
   PrintFileHead (HeaderFilePtr, n, k, d);
@@ -48,36 +62,43 @@ MatrixGenerator (
   
   fprintf (HeaderFilePtr, "#endif\n");
 
-  if (CloseFileStream (HeaderFilePtr, FileName) != STATUS_SUCCESS) {
+  Status = CloseFileStream (HeaderFilePtr, FileName);
+  if (Status != STATUS_SUCCESS) {
     PRINT_ERROR ("Warning: Failed to flush file safely to disk.\n");
+    return Status;
   }
 
   PRINT_INFO ("Function ends.\n");
+
+  return STATUS_SUCCESS;
 }
 
 
-void
+STATUS
 CountSizeOfMatrix (
   int16_t     *n,
   uint16_t    *k,
   uint8_t     *d
   )
 {
-  int   TempInput;
+  int         TempInput;
 
   PRINT_INFO ("Function starts.\n");
 
   printf ("\n"
           "        Size of block (>2): "
     );
-  scanf ("%d", &TempInput); 
+  if(scanf ("%d", &TempInput) != 1) {
+    PRINT_ERROR ("Failed to read block size input.\n");
+    return STATUS_ERROR_INVALID_PARAM;
+  }
   printf ("\n");
 
   *n = TempInput;
 
   if (*n < 3) {
     PRINT_ERROR ("Block is too small. It has to be bigger than 2.\n");
-    exit (0);
+    return STATUS_ERROR_INVALID_PARAM;
   }
 
   for (*d = 0; (1<<(*d)) <= *n; (*d)++);
@@ -85,6 +106,8 @@ CountSizeOfMatrix (
   *k = *n - *d;
 
   PRINT_INFO ("Function ends.\n");
+
+  return STATUS_SUCCESS;
 }
 
 
