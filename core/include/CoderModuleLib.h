@@ -2,7 +2,12 @@
 #ifndef CODER_MODULE_LIB_H
 #define CODER_MODULE_LIB_H
 
-#include <CommonTypes.h>
+
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
+
+#include "CommonTypes.h"
 
 #define CHAR_TO_INT(InputChar)    ((InputChar) - (48))
 #define INT_TO_CHAR(InputInt)     ((InputInt) + (48))

@@ -1,7 +1,11 @@
+
 #ifndef FILE_IO_H
 #define FILE_IO_H
 
-#include <CommonTypes.h>
+
+#include <stdlib.h>
+
+#include "CommonTypes.h"
 
 #ifdef __cplusplus
 extern "C" {
