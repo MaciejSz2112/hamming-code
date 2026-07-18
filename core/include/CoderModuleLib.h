@@ -93,9 +93,9 @@ ErrorCorrection (
 **/
 void
 PrintIntBufforToFile (
-  FILE        *FilePtr,
-  uint8_t     InputBuffor[],
-  uint16_t    BufforSize
+  FILE            *FilePtr,
+  const uint8_t   InputBuffor[],
+  uint16_t        BufforSize
   );
 
 
@@ -125,7 +125,7 @@ void
 XorMatrixAndDataToBuffor (
   uint16_t        SizeOfDimensionN,
   uint16_t        SizeOfDimensionM,
-  char            InputBuffor[],
+  const char      InputBuffor[],
   const uint8_t   Matrix[][SizeOfDimensionM],
   uint8_t         OutputBuffor[]
   );
