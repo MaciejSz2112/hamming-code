@@ -202,13 +202,13 @@ ErrorCorrection (
 
 void
 PrintIntBufforToFile (
-  FILE        *FilePtr,
-  uint8_t     InputBuffor[],
-  uint16_t    BufforSize
+  FILE            *FilePtr,
+  const uint8_t   InputBuffor[],
+  uint16_t        BufforSize
   )
 {
-  uint16_t    Counter;
-  char        OutputBuffor[BufforSize+1];
+  uint16_t        Counter;
+  char            OutputBuffor[BufforSize+1];
 
   for (Counter = 0; Counter < BufforSize; Counter++) {
     OutputBuffor[Counter] = INT_TO_CHAR (InputBuffor[Counter]);
@@ -237,7 +237,7 @@ void
 XorMatrixAndDataToBuffor (
   uint16_t        SizeOfDimensionN,
   uint16_t        SizeOfDimensionM,
-  char            InputBuffor[],
+  const char      InputBuffor[],
   const uint8_t   Matrix[][SizeOfDimensionM],
   uint8_t         OutputBuffor[]
   )
