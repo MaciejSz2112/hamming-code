@@ -1,0 +1,41 @@
+name: Verify Commit Message
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  check-msg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
+
+      - name: Validate Format and Issue
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          MSG=$(git log -1 --pretty=%B)
+
+          if ! echo "$MSG" | grep -Eiq "Issue-id:[[:space:]]*#[0-9]+"; then
+            echo "::error::Commit message is missing a valid 'Issue-id: #NUM' line."
+            exit 1
+          fi
+
+          ISSUE_ID=$(echo "$MSG" | grep -Eio "Issue-id:[[:space:]]*#[0-9]+" | grep -Eo "[0-9]+")
+
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: token $TOKEN" \
+            "https://api.github.com/repos/$REPO/issues/$ISSUE_ID")
+
+          if [ "$STATUS" -ne 200 ]; then
+            echo "::error::Issue #$ISSUE_ID does not exist in this repository."
+            exit 1
+          fi
+
+          echo "Success: Issue #$ISSUE_ID verified."
