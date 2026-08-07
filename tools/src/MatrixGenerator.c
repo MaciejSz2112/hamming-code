@@ -33,7 +33,7 @@ MatrixGenerator (
   uint16_t    n;
   uint16_t    k;
   uint8_t     d;
-  char        FileName[30];
+  char        FileName[32];
   STATUS      Status;
 
   PRINT_INFO ("Function starts.\n");
@@ -44,7 +44,7 @@ MatrixGenerator (
     return Status;
   }
 
-  sprintf (FileName, "core/include/Size_%d.h", n);
+  snprintf (FileName, sizeof(FileName), "core/include/Size_%d.h", n);
 
   Status = OpenFileStream (&HeaderFilePtr, FileName, "w");
   if (Status != STATUS_SUCCESS) {
@@ -355,9 +355,9 @@ PrintBlankSpaceBeforeInt (
   uint16_t    IntValue
   )
 {
-  char      String[10];
+  char      String[16];
 
-  sprintf (String, "%d", IntValue);
+  snprintf (String, sizeof(String), "%d", IntValue);
 
   PrintBlankSpaceBeforeString (FilePtr, Length, String);
 }
