@@ -1,4 +1,6 @@
 
+#include <string.h>
+
 #include "CoderModuleLib.h"
 #include "CommonTypes.h"
 #include "FileIo.h"
@@ -225,11 +227,7 @@ ClearCharBuffor (
   uint16_t    BufforSize
   )
 {
-  uint16_t    Counter;
-
-  for (Counter = 0; Counter < BufforSize; Counter++) {
-    Buffor[Counter] = '\0';
-  }
+  memset (Buffor, 0, BufforSize);
 }
 
 
