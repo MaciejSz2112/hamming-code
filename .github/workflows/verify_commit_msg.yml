@@ -22,12 +22,12 @@ jobs:
         run: |
           MSG=$(git log -1 --pretty=%B)
 
-          if ! echo "$MSG" | grep -Eiq "Issue-id:[[:space:]]*#[0-9]+"; then
-            echo "::error::Commit message is missing a valid 'Issue-id: #NUM' line."
+          if ! echo "$MSG" | grep -Eiq "Resolves:[[:space:]]*#[0-9]+"; then
+            echo "::error::Commit message is missing a valid 'Resolves: #NUM' line."
             exit 1
           fi
 
-          ISSUE_ID=$(echo "$MSG" | grep -Eio "Issue-id:[[:space:]]*#[0-9]+" | grep -Eo "[0-9]+")
+          ISSUE_ID=$(echo "$MSG" | grep -Eio "Resolves:[[:space:]]*#[0-9]+" | grep -Eo "[0-9]+")
 
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
             -H "Authorization: token $TOKEN" \
